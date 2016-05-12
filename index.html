@@ -1,0 +1,157 @@
+<html>
+<head>
+	<title></title>
+
+</head>
+<body style="padding: 0px;margin: 0px;">
+
+<script src="pixi.js"></script>
+<script type="text/javascript">
+// which will try to choose the best renderer for the environment you are in.
+var scale = window.devicePoxielRatio;
+var renderer = new PIXI.CanvasRenderer(window.innerWidth, window.innerHeight)
+renderer.backgroundColor = 0x58b9df;
+
+
+// The renderer will create a canvas element for you that you can then insert into the DOM.
+document.body.appendChild(renderer.view);
+
+// You need to create a root container that will hold the scene you want to draw.
+var stage = new PIXI.Container();
+
+var graphics = new PIXI.Graphics();
+
+
+var minPosition = 0;
+var maxPosition = 5;
+var moveTag = true;
+var stepLength = 0.5;
+
+var blockWidth = (window.innerWidth-300)/2;
+var blockHeight = (window.innerHeight-200)/4;
+var offsetX = 50;
+// graphics.lineStyle(1, 0xFF0000);
+
+// Declare a global variable for our sprite so that the animate function can access it.
+var step1 = null;
+var step2 = null;
+var step3 = null;
+var step4 = null;
+
+stage.interactive = true;
+
+// load the texture we need
+PIXI.loader.add('step1', "1.png");
+PIXI.loader.add('step2', "2.png");
+PIXI.loader.add('step3', "3.png");
+PIXI.loader.add('step4', "4.png");
+PIXI.loader.load(function (loader, resources) {
+    // This creates a texture from a 'bunny.png' image.
+    step1 = new PIXI.Sprite(resources.step1.texture);
+    step2 = new PIXI.Sprite(resources.step2.texture);
+    step3 = new PIXI.Sprite(resources.step3.texture);
+    step4 = new PIXI.Sprite(resources.step4.texture);
+
+
+
+
+
+    // Setup the position and scale of the bunny
+
+    step1.scale.x = 1;
+    step1.scale.y = 1;
+
+    step1.position.x = blockWidth-178;
+    step1.position.y = 100;
+
+    graphics.beginFill(0x363e45);
+    graphics.drawEllipse(blockWidth-55, 100+step1.height, 128, 35);
+    graphics.endFill();
+
+    minPosition = 100;
+    maxPosition = 100-20;
+
+    step1.interactive = true;
+    step1.on('mousedown', onButtonDown).on('tap', onTapDown);
+
+    step2.scale.x = 1;
+    step2.scale.y = 1;
+
+    step2.position.x = blockWidth+178;
+    step2.position.y = 100+blockHeight;
+
+    step3.scale.x = 1;
+    step3.scale.y = 1;
+
+    step3.position.x = blockWidth-178;
+    step3.position.y = 100+blockHeight*2;
+
+
+    step4.scale.x = 1;
+    step4.scale.y = 1;
+
+    step4.position.x = blockWidth+178;
+    step4.position.y = 100+blockHeight*3;
+
+
+    graphics.lineStyle(5, 0xFFFFFF);
+    graphics.moveTo(step1.position.x+step1.width/2, step1.position.y+step1.height/2);
+    graphics.lineTo(step2.position.x+step2.width/2, step2.position.y+step2.height/2);
+
+
+    graphics.moveTo(step2.position.x+step2.width/2, step2.position.y+step2.height/2);
+    graphics.lineTo(step3.position.x+step3.width/2, step3.position.y+step3.height/2);
+
+    graphics.moveTo(step3.position.x+step3.width/2, step3.position.y+step3.height/2);
+    graphics.lineTo(step4.position.x+step4.width/2, step4.position.y+step4.height/2);
+
+
+
+    // Add the bunny to the scene we are building.
+    stage.addChild(graphics);
+    stage.addChild(step1);
+    stage.addChild(step2);
+    stage.addChild(step3);
+    stage.addChild(step4);
+    // stage.addChild(bunny2);
+    // kick off the animation loop (defined below)
+    animate();
+    renderer.render(stage)
+});
+
+
+function onButtonDown(){
+	window.location.href = "step1.html";
+	// alert('success');
+}
+
+
+function onTapDown(){
+    window.location.href = "step1.html";
+}
+
+function animate() {
+    // start the timer for the next animation loop
+    requestAnimationFrame(animate);
+
+    // each frame we spin the bunny around a bit
+    if(step1.position.y > maxPosition && moveTag){
+    	step1.position.y = step1.position.y - stepLength;
+    }else if(step1.position.y == maxPosition)
+    {
+    	moveTag = false;
+    	step1.position.y = step1.position.y + stepLength;
+    }else if(step1.position.y < minPosition && !moveTag){
+    	step1.position.y = step1.position.y + stepLength;
+    }else if (step1.position.y == minPosition){
+    	moveTag = true;
+    	step1.position.y = step1.position.y - stepLength;
+    }
+
+    // this is the main render call that makes pixi draw your container and its children.
+    renderer.render(stage);
+}
+</script>
+
+</body>
+</html>

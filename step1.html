@@ -1,0 +1,86 @@
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script src="bootstrap.min.js"></script>
+    <style type="text/css">
+        .modal-content{
+            background-color: transparent;
+        }
+        .modal-header{
+            background-color: #cdc1b4;
+            border-radius: 10px 10px 0px 0px;
+            border-bottom: 0px;
+        }
+        .modal-footer{
+            background-color: #cdc1b4;
+            border-radius: 0px 0px 10px 10px;
+            border-top: 0px;
+        }
+        .modal-body{
+            text-align: center;
+            background-color: #776d64;
+        }
+        .modal-body > p {
+            font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+            font-size: 20px;
+            color: #ffffff;
+            opacity: 1;
+        }
+        .modal-footer{
+            text-align: center;
+        }
+        .modal-footer > button{
+            font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+            background-color: #8f7a66;
+            color: white;
+            padding: 10px 40px 10px 40px;
+            transition: all 0.5s;
+        }
+        .modal-footer > button:hover{
+            font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+            background-color: black;
+            color: white;
+            padding: 10px 40px 10px 40px;
+        }
+    </style>
+</head>
+<body style="padding: 0px;margin: 0px;">
+
+  <!-- Modal -->
+  <div class="container" >
+        <div class="modal fade" id="myModal" role="dialog" style="top: 30%;position: absolute;">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to restart?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+  </div>
+
+<script src="pixi.js"></script>
+<script src="crush.js"></script>
+
+<script type="text/javascript">
+    
+
+
+</script>
+
+
+
+
+</body>
+</html>
