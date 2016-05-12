@@ -44,8 +44,9 @@ for (var i = 0; i < objectNumber; i++) {
 };
 graphics.endFill();
 
+var resourcePath = "imgs/";
 // Prelaod the asset
-var textureArray = [['material1','g1.png'], ['material2','g2.png'], ['material3', 'g3.png'], ['material4', 'g4.png']];
+var textureArray = [['material1', resourcePath+'g1.png'], ['material2', resourcePath+'g2.png'], ['material3', resourcePath+'g3.png'], ['material4', resourcePath+'g4.png']];
 
 
 for (var i = 0; i < textureArray.length; i++) {
@@ -71,21 +72,21 @@ var stopFlag = false;
 
 PIXI.loader.load(function (loader, resources) {
 
-    for(var i = 1; i <= 9; i++ ){
-        PIXI.loader.add('explosion1_000'+i, 'explosion1_000'+i+'.png');
-    }
-    for(var i = 10; i <= 90; i++){
-        PIXI.loader.add('explosion1_00'+i, 'explosion1_00'+i+'.png');
-    }
+    // for(var i = 1; i <= 9; i++ ){
+    //     PIXI.loader.add('explosion1_000'+i, resourcePath+'explosion1_000'+i+'.png');
+    // }
+    // for(var i = 10; i <= 90; i++){
+    //     PIXI.loader.add('explosion1_00'+i, resourcePath+'explosion1_00'+i+'.png');
+    // }
 
 
     for(var i = 1; i <= 9; i++){
-        var texture = PIXI.Texture.fromImage('explosion1_000'+i+'.png');
+        var texture = PIXI.Texture.fromImage(resourcePath+'explosion1_000'+i+'.png');
         explosionTexture.push(texture);
     }
 
     for(var i = 10; i <= 90; i++){
-        var texture = PIXI.Texture.fromImage('explosion1_00'+i+'.png');
+        var texture = PIXI.Texture.fromImage(resourcePath+'explosion1_00'+i+'.png');
         explosionTexture.push(texture);
     }
 
